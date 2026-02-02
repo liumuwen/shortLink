@@ -9,7 +9,7 @@ spring:
     url: jdbc:shardingsphere:classpath:shardingsphere-config-${database.env:dev}.yaml
   data:
     redis:
-      host: 192.168.56.127
+      host: 192.168.150.101
       port: 6379
       password: 123456
   mvc:
@@ -19,7 +19,12 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.56.127:8848
+        server-addr: 192.168.150.101:8848
+  rabbitmq:
+    host: 192.168.150.101
+    port: 5672
+    username: admin
+    password: admin
 
 short-link:
   domain:
@@ -41,3 +46,11 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mapper/*.xml
+
+rabbitmq:
+  queue:
+    stats-save: short-link.stats.queue.actual  # 这里的配置会覆盖代码里的默认值
+  exchange:
+    stats-save: short-link.stats.exchange.actual
+  routing-key:
+    stats-save: short-link.stats.routing-key.actual

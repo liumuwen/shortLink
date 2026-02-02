@@ -18,6 +18,7 @@
 package com.nageoffer.shortlink.project.mq.idempotent;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit;
  * 消息队列幂等处理器
  * 公众号：马丁玩编程，回复：加群，添加马哥微信（备注：link）获取项目资料
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class MessageQueueIdempotentHandler {
@@ -44,6 +46,7 @@ public class MessageQueueIdempotentHandler {
      */
     public boolean isMessageBeingConsumed(String messageId) {
         String key = IDEMPOTENT_KEY_PREFIX + messageId;
+        log.info("消息幂等key:{}",key);
         return Boolean.FALSE.equals(stringRedisTemplate.opsForValue().setIfAbsent(key, "0", 2, TimeUnit.MINUTES));
     }
 
