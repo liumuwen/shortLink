@@ -39,7 +39,7 @@ public class SentinelRuleConfig implements InitializingBean {
         List<FlowRule> rules = new ArrayList<>();
 
         rules.add(buildRule("create_short-link", 1));
-        rules.add(buildRule("restore_short-link", 3000));
+        rules.add(buildRule("restore_short-link", 2600));
 
         FlowRuleManager.loadRules(rules);
     }

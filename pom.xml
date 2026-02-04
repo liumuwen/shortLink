@@ -45,7 +45,7 @@
 <!--        <module>aggregation</module>-->
         <module>project</module>
         <module>gateway</module>
-        <module>openresty</module>
+<!--        <module>openresty</module>-->
     </modules>
 
     <dependencies>
