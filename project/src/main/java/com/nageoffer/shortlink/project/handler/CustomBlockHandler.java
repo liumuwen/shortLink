@@ -31,4 +31,7 @@ public class CustomBlockHandler {
     public static Result<ShortLinkCreateRespDTO> createShortLinkBlockHandlerMethod(ShortLinkCreateReqDTO requestParam, BlockException exception) {
         return new Result<ShortLinkCreateRespDTO>().setCode("B100000").setMessage("当前访问网站人数过多，请稍后再试...");
     }
+    public static Result<ShortLinkCreateRespDTO> restoreShortLinkBlockHandlerMethod(ShortLinkCreateReqDTO requestParam, BlockException exception) {
+        return new Result<ShortLinkCreateRespDTO>().setCode("B100000").setMessage("当前访问网站人数过多，请稍后再试...");
+    }
 }

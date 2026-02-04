@@ -57,6 +57,11 @@ public class ShortLinkController {
      * 短链接跳转原始链接
      */
     @GetMapping("/{short-uri}")
+    @SentinelResource(
+            value = "restore_short-link",
+            blockHandler = "restoreShortLinkBlockHandlerMethod",
+            blockHandlerClass = CustomBlockHandler.class
+    )
     public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response) {
         shortLinkService.restoreUrl(shortUri, request, response);
     }

@@ -34,13 +34,23 @@ import java.util.List;
 public class SentinelRuleConfig implements InitializingBean {
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
+
         List<FlowRule> rules = new ArrayList<>();
-        FlowRule createOrderRule = new FlowRule();
-        createOrderRule.setResource("create_short-link");
-        createOrderRule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-        createOrderRule.setCount(1);
-        rules.add(createOrderRule);
+
+        rules.add(buildRule("create_short-link", 1));
+        rules.add(buildRule("restore_short-link", 3000));
+
         FlowRuleManager.loadRules(rules);
     }
+
+    private FlowRule buildRule(String resource, double qps) {
+        FlowRule rule = new FlowRule();
+        rule.setResource(resource);
+        rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+        rule.setCount(qps);
+        return rule;
+    }
 }
+
+
