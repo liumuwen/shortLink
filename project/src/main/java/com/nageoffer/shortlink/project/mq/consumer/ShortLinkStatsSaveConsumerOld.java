@@ -73,6 +73,7 @@ import static com.nageoffer.shortlink.project.common.constant.ShortLinkConstant.
  */
 @Slf4j
 @Component
+@Deprecated
 @RequiredArgsConstructor
 public class ShortLinkStatsSaveConsumerOld implements StreamListener<String, MapRecord<String, String, String>> {
 

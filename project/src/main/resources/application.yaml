@@ -20,11 +20,11 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.150.101:8848
-  rabbitmq:
-    host: 192.168.150.101
-    port: 5672
-    username: admin
-    password: admin
+#  rabbitmq:
+#    host: 192.168.150.101
+#    port: 5672
+#    username: admin
+#    password: admin
 
 short-link:
   domain:
@@ -41,16 +41,24 @@ short-link:
         - zhihu.com
         - juejin.cn
         - cnblogs.com
-
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mapper/*.xml
-
-rabbitmq:
-  queue:
-    stats-save: short-link.stats.queue.actual  # 这里的配置会覆盖代码里的默认值
-  exchange:
-    stats-save: short-link.stats.exchange.actual
-  routing-key:
-    stats-save: short-link.stats.routing-key.actual
+rocketmq:
+  name-server: 192.168.150.101:9876
+  producer:
+    group: short-link_project-service_stats-save_pg
+    topic: short-link_project-service_topic
+    send-message-timeout: 2000
+    retry-times-when-send-failed: 1
+    retry-times-when-send-async-failed: 1
+  consumer:
+    group: short-link_project-service_stats-save_cg
+#rabbitmq:
+#  queue:
+#    stats-save: short-link.stats.queue.actual  # 这里的配置会覆盖代码里的默认值
+#  exchange:
+#    stats-save: short-link.stats.exchange.actual
+#  routing-key:
+#    stats-save: short-link.stats.routing-key.actual

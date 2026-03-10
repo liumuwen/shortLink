@@ -47,8 +47,7 @@ import com.nageoffer.shortlink.project.dto.resp.ShortLinkBatchCreateRespDTO;
 import com.nageoffer.shortlink.project.dto.resp.ShortLinkCreateRespDTO;
 import com.nageoffer.shortlink.project.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.nageoffer.shortlink.project.dto.resp.ShortLinkPageRespDTO;
-import com.nageoffer.shortlink.project.mq.producer.ShortLinkStatsSaveProducer;
-import com.nageoffer.shortlink.project.mq.producer.ShortLinkStatsSaveProducer;
+import com.nageoffer.shortlink.project.mq.producer.ShortLinkStatsSaveProducerRabbit;
 import com.nageoffer.shortlink.project.service.ShortLinkService;
 import com.nageoffer.shortlink.project.toolkit.HashUtil;
 import com.nageoffer.shortlink.project.toolkit.LinkUtil;
@@ -108,7 +107,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
     private final ShortLinkGotoMapper shortLinkGotoMapper;
     private final StringRedisTemplate stringRedisTemplate;
     private final RedissonClient redissonClient;
-    private final ShortLinkStatsSaveProducer shortLinkStatsSaveProducer;
+    private final ShortLinkStatsSaveProducerRabbit shortLinkStatsSaveProducer;
     private final GotoDomainWhiteListConfiguration gotoDomainWhiteListConfiguration;
 
     @Value("${short-link.domain.default}")
